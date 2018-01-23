@@ -37,8 +37,41 @@ class Blockchain {
     }
 
     //  The first block on a blockchain is called a 'Genesis Block' and should be added manually
-    createGenesisBlock(){
+    createGenesisBlock() {
         // Note: previousHash does not exist on the Genesis Block, so it can be set to anything, eg. 0
         return new Block(0, "23/01/2018", "Genesis block data", "0");
     }
+
+    // Returns the latest block on the chain
+    getLatestBlock() {
+        return this.chain[this.chain.length - 1];
+    }
+
+    // Adding a new block to the chain. 
+    addBlock(newBlock) {
+        // Step 1. Set the new block's previousHash to the hash of the latest on the chain.
+        newBlock.previousHash = this.getLatestBlock().hash;
+
+        // Step 2. Recalculate the hash. Must be done every time a block's properties changes, eg. when setting the previousHash in Step 1.
+        newBlock.hash = newBlock.calculateHash();
+
+        // Step 3. Push block onto chain
+        this.chain.push(newBlock);
+    }
 }
+
+/* TESTING TESTING */
+
+// Create new blockchain
+let sustainiaCoin = new Blockchain();
+
+// Add 2 blocks to the blockchain
+sustainiaCoin.addBlock(new Block("1", "21/01/2018", {
+    amount: 6
+}));
+sustainiaCoin.addBlock(new Block("2", "22/01/2018", {
+    amount: 2
+}));
+
+// Console.log out the result (stringify because the Blockchain is an object)
+console.log(JSON.stringify(sustainiaCoin, null, 2));
