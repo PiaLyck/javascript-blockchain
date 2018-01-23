@@ -1,5 +1,6 @@
-// Create class Block that defines that a block on our blockchain will look like.
+const SHA256 = require('crypto-js/sha256');
 
+// Create class Block that defines that a block on our blockchain will look like.
 class Block {
     /*  The constructor receives the properties of the block, ie. index, timestamp, some data and previous hash.
         index = optional. Tells us where the block is located on the chain.
@@ -15,8 +16,8 @@ class Block {
         this.hash = ''; // will contain the hash of the block. This is calculated later on.
     }
 
-    /*  Method for calculating the hash of the block, based on the block's properties. This will identify the block on the blockchain.
-        
+    /*  Method for calculating the hash of the block, based on the block's properties.
+        This will identify the block on the blockchain.    
     */
     calculateHash() {
 
