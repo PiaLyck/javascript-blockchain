@@ -83,6 +83,15 @@ class Blockchain {
     }
 }
 
+/* PROOF-OF-WORK MECHANISM
+    To add security and avoid spamming the blockchain, the user has to prove that she/he put a lot of computing power into making a block.
+    This process is also called 'mining'.
+    Example: BitCoin requires the hash of a block to begin with a number of zeros, 
+    so you have to run the hash function multiple times until you get lucky.
+    This is also called 'the difficulty'. This way, there is a steady amount of blocks being created.
+*/
+
+
 /* TESTING TESTING */
 
 // Create new blockchain
@@ -100,7 +109,9 @@ sustainiaCoin.addBlock(new Block("2", "22/01/2018", {
 console.log('Is blockchain valid? ' + sustainiaCoin.isChainValid());
 
 // Trying to tamper with the block by overwriting block no. 2's data
-sustainiaCoin.chain[1].data = { amount: 666 };
+sustainiaCoin.chain[1].data = {
+    amount: 666
+};
 // and then recalculating its hash
 sustainiaCoin.chain[1].hash = sustainia.chain[1].calculateHash();
 
