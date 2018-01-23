@@ -96,6 +96,15 @@ sustainiaCoin.addBlock(new Block("2", "22/01/2018", {
     amount: 2
 }));
 
+// Valid
+console.log('Is blockchain valid? ' + sustainiaCoin.isChainValid());
+
+// Trying to tamper with the block by overwriting block no. 2's data
+sustainiaCoin.chain[1].data = { amount: 666 };
+// and then recalculating its hash
+sustainiaCoin.chain[1].hash = sustainia.chain[1].calculateHash();
+
+// Now the blockchain is invalid and prints 'false'
 console.log('Is blockchain valid? ' + sustainiaCoin.isChainValid());
 
 // Console.log out the result (stringify because the Blockchain is an object)
