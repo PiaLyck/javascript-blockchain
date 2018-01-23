@@ -1,0 +1,23 @@
+{
+  "name": "javascript-blockchain",
+  "version": "1.0.0",
+  "description": "Learning about blockchain by writing one in JavaScript :sunglasses:",
+  "main": "main.js",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PiaLyck/javascript-blockchain.git"
+  },
+  "author": "Pia Lyck Festersen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PiaLyck/javascript-blockchain/issues"
+  },
+  "homepage": "https://github.com/PiaLyck/javascript-blockchain#readme"
+}
