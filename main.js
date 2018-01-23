@@ -58,6 +58,29 @@ class Blockchain {
         // Step 3. Push block onto chain
         this.chain.push(newBlock);
     }
+
+    /*  Blockchain is great because once a block is added, 
+        it cannot be changed without invalidating the rest of the chain.
+    */
+    isChainValid() {
+        // Check integrity by looping over the chain. Start at 1, because 0 is the Genesis block.
+        for (let i = 1; i < this.chain.length; i++) {
+            const currentBlock = this.chain[i];
+            const previousBlock = this.chain[i - 1];
+
+            // 1. Check if currentBlock's hash is still valid by calculating its hash again
+            if (currentBlock.hash !== currentBlock.calculateHash()) {
+                return false; // The block's hash does not match its properties when recalculated.
+            }
+
+            // 2. Check if block points to a correct previous block. Is the previous hash property set correctly?
+            if (currentBlock.previousHash !== previousBlock.hash) {
+                return false; // The block points to something else than the previous block.
+            }
+        }
+
+        return true;
+    }
 }
 
 /* TESTING TESTING */
@@ -73,5 +96,7 @@ sustainiaCoin.addBlock(new Block("2", "22/01/2018", {
     amount: 2
 }));
 
+console.log('Is blockchain valid? ' + sustainiaCoin.isChainValid());
+
 // Console.log out the result (stringify because the Blockchain is an object)
-console.log(JSON.stringify(sustainiaCoin, null, 2));
+// console.log(JSON.stringify(sustainiaCoin, null, 2));
