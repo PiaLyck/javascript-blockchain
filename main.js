@@ -26,3 +26,19 @@ class Block {
         return SHA256(this.index + this.timestamp + this.previousHash + JSON.stringify(this.data)).toString();
     }
 }
+
+// Create class Blockchain
+class Blockchain {
+    /*  Initializing the blockchain.
+        chain = Array of blocks, inialized to contain the Genesis block.
+    */
+    constructor() {
+        this.chain = [this.createGenesisBlock()];
+    }
+
+    //  The first block on a blockchain is called a 'Genesis Block' and should be added manually
+    createGenesisBlock(){
+        // Note: previousHash does not exist on the Genesis Block, so it can be set to anything, eg. 0
+        return new Block(0, "23/01/2018", "Genesis block data", "0");
+    }
+}
